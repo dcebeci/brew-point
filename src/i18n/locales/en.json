@@ -1,0 +1,47 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "orders": "Orders",
+    "products": "Menu",
+    "settings": "Settings"
+  },
+  "navbar": {
+    "welcome": "Welcome, {{email}}",
+    "logout": "Log out"
+  },
+  "login": {
+    "title": "Sign in to the admin panel",
+    "email": "Email",
+    "emailPlaceholder": "example@brewpoint.com",
+    "emailInvalid": "Enter a valid email address",
+    "password": "Password",
+    "passwordTooShort": "Password must be at least 6 characters",
+    "submit": "Sign in"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "Daily sales summary and charts will appear here.",
+    "kpi": {
+      "todaySales": "Today's Sales",
+      "orderCount": "Order Count",
+      "avgBasket": "Avg. Basket",
+      "activeProducts": "Active Products"
+    },
+    "salesTrendPlaceholder": "Sales trend chart (coming soon)"
+  },
+  "orders": {
+    "title": "Orders",
+    "subtitle": "Order table, filtering and status updates will appear here."
+  },
+  "products": {
+    "title": "Menu",
+    "subtitle": "Product list, stock status and CRUD will appear here."
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Cafe info and theme settings will appear here."
+  },
+  "common": {
+    "noContent": "No content yet"
+  }
+}

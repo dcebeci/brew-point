@@ -1,19 +1,26 @@
+import { useMemo } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { useAuthStore } from '@/store/auth-store'
 
-const loginSchema = z.object({
-  email: z.string().email('Geçerli bir e-posta girin'),
-  password: z.string().min(6, 'Şifre en az 6 karakter olmalı'),
-})
-
-type LoginForm = z.infer<typeof loginSchema>
-
 export function LoginPage() {
+  const { t } = useTranslation()
   const login = useAuthStore((s) => s.login)
   const navigate = useNavigate()
+
+  const loginSchema = useMemo(
+    () =>
+      z.object({
+        email: z.string().email(t('login.emailInvalid')),
+        password: z.string().min(6, t('login.passwordTooShort')),
+      }),
+    [t],
+  )
+
+  type LoginForm = z.infer<typeof loginSchema>
 
   const {
     register,
@@ -23,7 +30,6 @@ export function LoginPage() {
 
   const onSubmit = async (data: LoginForm) => {
     // TODO: backend hazır olunca gerçek /auth/login çağrısına bağla
-    // const res = await api.post('/auth/login', data)
     login('mock-jwt-token', { email: data.email, role: 'ADMIN' })
     navigate('/dashboard')
   }
@@ -32,17 +38,17 @@ export function LoginPage() {
     <div className="min-h-screen flex items-center justify-center bg-neutral-50 px-4">
       <div className="w-full max-w-sm bg-white border border-neutral-200 rounded-lg p-8">
         <h1 className="text-xl font-semibold mb-1">☕ Brew Point</h1>
-        <p className="text-sm text-neutral-500 mb-6">
-          Yönetim paneline giriş yap
-        </p>
+        <p className="text-sm text-neutral-500 mb-6">{t('login.title')}</p>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>
-            <label className="text-sm font-medium block mb-1">E-posta</label>
+            <label className="text-sm font-medium block mb-1">
+              {t('login.email')}
+            </label>
             <input
               type="email"
               {...register('email')}
               className="w-full border border-neutral-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-neutral-900"
-              placeholder="ornek@brewpoint.com"
+              placeholder={t('login.emailPlaceholder')}
             />
             {errors.email && (
               <p className="text-red-500 text-xs mt-1">
@@ -51,7 +57,9 @@ export function LoginPage() {
             )}
           </div>
           <div>
-            <label className="text-sm font-medium block mb-1">Şifre</label>
+            <label className="text-sm font-medium block mb-1">
+              {t('login.password')}
+            </label>
             <input
               type="password"
               {...register('password')}
@@ -69,7 +77,7 @@ export function LoginPage() {
             disabled={isSubmitting}
             className="w-full bg-neutral-900 text-white text-sm font-medium py-2 rounded-md hover:bg-neutral-800 transition-colors disabled:opacity-50"
           >
-            Giriş yap
+            {t('login.submit')}
           </button>
         </form>
       </div>

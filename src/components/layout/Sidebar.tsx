@@ -1,14 +1,17 @@
 import { NavLink } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { LayoutDashboard, ClipboardList, Coffee, Settings } from 'lucide-react'
 
-const navItems = [
-  { to: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
-  { to: '/orders', label: 'Siparişler', icon: ClipboardList },
-  { to: '/products', label: 'Menü', icon: Coffee },
-  { to: '/settings', label: 'Ayarlar', icon: Settings },
-]
-
 export function Sidebar() {
+  const { t } = useTranslation()
+
+  const navItems = [
+    { to: '/dashboard', label: t('nav.dashboard'), icon: LayoutDashboard },
+    { to: '/orders', label: t('nav.orders'), icon: ClipboardList },
+    { to: '/products', label: t('nav.products'), icon: Coffee },
+    { to: '/settings', label: t('nav.settings'), icon: Settings },
+  ]
+
   return (
     <aside className="w-60 shrink-0 border-r border-neutral-200 bg-white h-screen sticky top-0 flex flex-col">
       <div className="px-5 py-5 border-b border-neutral-200">

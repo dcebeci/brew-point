@@ -1,0 +1,47 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "orders": "Siparişler",
+    "products": "Menü",
+    "settings": "Ayarlar"
+  },
+  "navbar": {
+    "welcome": "Hoş geldin, {{email}}",
+    "logout": "Çıkış yap"
+  },
+  "login": {
+    "title": "Yönetim paneline giriş yap",
+    "email": "E-posta",
+    "emailPlaceholder": "ornek@brewpoint.com",
+    "emailInvalid": "Geçerli bir e-posta girin",
+    "password": "Şifre",
+    "passwordTooShort": "Şifre en az 6 karakter olmalı",
+    "submit": "Giriş yap"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "Günlük satış özeti ve grafikler burada olacak.",
+    "kpi": {
+      "todaySales": "Bugünkü Satış",
+      "orderCount": "Sipariş Sayısı",
+      "avgBasket": "Ort. Sepet",
+      "activeProducts": "Aktif Ürün"
+    },
+    "salesTrendPlaceholder": "Satış trendi grafiği (yakında)"
+  },
+  "orders": {
+    "title": "Siparişler",
+    "subtitle": "Sipariş tablosu, filtreleme ve durum güncelleme burada olacak."
+  },
+  "products": {
+    "title": "Menü",
+    "subtitle": "Ürün listesi, stok durumu ve CRUD burada olacak."
+  },
+  "settings": {
+    "title": "Ayarlar",
+    "subtitle": "Kafe bilgisi ve tema ayarları burada olacak."
+  },
+  "common": {
+    "noContent": "Henüz içerik yok"
+  }
+}
