@@ -1,13 +1,14 @@
 import { useTranslation } from 'react-i18next'
+import { mockDashboardData } from '@/lib/mock-data'
 
 export function DashboardPage() {
   const { t } = useTranslation()
 
   const kpis = [
-    t('dashboard.kpi.todaySales'),
-    t('dashboard.kpi.orderCount'),
-    t('dashboard.kpi.avgBasket'),
-    t('dashboard.kpi.activeProducts'),
+    t('dashboard.mockDashboardData.todaySales'),
+    t('dashboard.mockDashboardData.orderCount'),
+    t('dashboard.mockDashboardData.avgBasket'),
+    t('dashboard.mockDashboardData.activeProducts'),
   ]
 
   return (
