@@ -1,11 +1,73 @@
 @import "tailwindcss";
 
+/* Dark mode'u prefers-color-scheme yerine .dark class'ına bağla (manuel toggle). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+  Semantik renk token'ları. Component'lerde `dark:` varyantı tekrarlamak yerine
+  token'ın kendisini .dark altında değiştiriyoruz — tek kaynak, tek yerden tema.
+*/
+@theme {
+  --color-bg: #faf9f7;
+  --color-surface: #ffffff;
+  --color-surface-2: #f5f4f2;
+  --color-border: #e7e5e4;
+  --color-fg: #1c1917;
+  --color-muted: #78716c;
+  --color-brand: #b45309;
+  --color-brand-hover: #92400e;
+  --color-brand-fg: #ffffff;
+  --color-brand-soft: #fdf3e3;
+
+  --color-chart-1: #b45309;
+  --color-chart-2: #0d9488;
+  --color-chart-3: #7c3aed;
+  --color-chart-4: #db2777;
+  --color-chart-5: #2563eb;
+  --color-chart-grid: #e7e5e4;
+}
+
+.dark {
+  --color-bg: #0c0a09;
+  --color-surface: #1c1917;
+  --color-surface-2: #262322;
+  --color-border: #302c2a;
+  --color-fg: #fafaf9;
+  --color-muted: #a8a29e;
+  --color-brand: #f59e0b;
+  --color-brand-hover: #fbbf24;
+  --color-brand-fg: #1c1917;
+  --color-brand-soft: #33230b;
+
+  --color-chart-1: #f59e0b;
+  --color-chart-2: #2dd4bf;
+  --color-chart-3: #a78bfa;
+  --color-chart-4: #f472b6;
+  --color-chart-5: #60a5fa;
+  --color-chart-grid: #302c2a;
+}
+
 :root {
-  color-scheme: light dark;
+  color-scheme: light;
+}
+
+.dark {
+  color-scheme: dark;
 }
 
 body {
   margin: 0;
   font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
+  background-color: var(--color-bg);
+  color: var(--color-fg);
+}
+
+@keyframes bp-fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: none; }
+}
+
+.animate-fade-in {
+  animation: bp-fade-in 0.18s ease-out;
 }

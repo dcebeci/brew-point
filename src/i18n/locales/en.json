@@ -3,45 +3,182 @@
     "dashboard": "Dashboard",
     "orders": "Orders",
     "products": "Menu",
-    "settings": "Settings"
+    "settings": "Settings",
+    "demoBadge": "Running on demo data"
   },
   "navbar": {
     "welcome": "Welcome, {{email}}",
-    "logout": "Log out"
+    "logout": "Log out",
+    "toggleTheme": "Toggle theme"
   },
   "login": {
+    "heading": "Sign in",
     "title": "Sign in to the admin panel",
     "email": "Email",
     "emailPlaceholder": "example@brewpoint.com",
     "emailInvalid": "Enter a valid email address",
     "password": "Password",
     "passwordTooShort": "Password must be at least 6 characters",
-    "submit": "Sign in"
+    "submit": "Sign in",
+    "submitting": "Signing in...",
+    "failed": "Sign in failed. Please check your credentials.",
+    "demoHint": "Demo account: {{email}} / {{password}}",
+    "fillDemo": "Fill demo credentials"
   },
   "dashboard": {
     "title": "Dashboard",
-    "subtitle": "Daily sales summary and charts will appear here.",
+    "subtitle": "Sales summary and charts for the last 30 days.",
+    "vsYesterday": "vs yesterday",
     "kpi": {
       "todaySales": "Today's Sales",
       "orderCount": "Order Count",
       "avgBasket": "Avg. Basket",
       "activeProducts": "Active Products"
     },
-    "salesTrendPlaceholder": "Sales trend chart (coming soon)"
+    "charts": {
+      "salesTrend": "Sales Trend",
+      "salesTrendHint": "Daily revenue over the last 30 days",
+      "topProducts": "Top Sellers",
+      "topProductsHint": "Top 5 products by units sold",
+      "hourlyTraffic": "Hourly Traffic",
+      "hourlyTrafficHint": "Order count by hour of day",
+      "categoryBreakdown": "Category Breakdown",
+      "categoryBreakdownHint": "Revenue by category"
+    }
   },
   "orders": {
     "title": "Orders",
-    "subtitle": "Order table, filtering and status updates will appear here."
+    "subtitle": "Filter orders, inspect details and update their status.",
+    "empty": "No orders match your filters",
+    "tableNumber": "Table {{number}}",
+    "itemCount_one": "{{count}} item",
+    "itemCount_other": "{{count}} items",
+    "filters": {
+      "search": "Search",
+      "searchPlaceholder": "Order no, table or product",
+      "status": "Status",
+      "allStatuses": "All statuses",
+      "from": "From",
+      "to": "To"
+    },
+    "table": {
+      "orderNumber": "Order No",
+      "table": "Table",
+      "items": "Items",
+      "date": "Date",
+      "status": "Status",
+      "total": "Total"
+    },
+    "status": {
+      "PENDING": "Pending",
+      "PREPARING": "Preparing",
+      "COMPLETED": "Completed",
+      "CANCELLED": "Cancelled"
+    },
+    "detail": {
+      "title": "Order {{orderNumber}}",
+      "items": "Order items",
+      "total": "Total",
+      "updateStatus": "Update status"
+    },
+    "toast": {
+      "statusUpdated": "Order status updated"
+    }
   },
   "products": {
     "title": "Menu",
-    "subtitle": "Product list, stock status and CRUD will appear here."
+    "subtitle": "Manage products, update pricing and stock levels.",
+    "new": "New product",
+    "empty": "No products match your filters",
+    "lowStock": "Low stock",
+    "active": "Active",
+    "passive": "Inactive",
+    "deleteTitle": "Delete product",
+    "deleteMessage": "\"{{name}}\" will be permanently deleted. Are you sure?",
+    "filters": {
+      "search": "Search",
+      "searchPlaceholder": "Product name",
+      "category": "Category",
+      "allCategories": "All categories"
+    },
+    "table": {
+      "name": "Product",
+      "category": "Category",
+      "price": "Price",
+      "stock": "Stock",
+      "state": "State",
+      "actions": "Actions"
+    },
+    "category": {
+      "COFFEE": "Coffee",
+      "COLD_DRINK": "Cold Drink",
+      "TEA": "Tea",
+      "DESSERT": "Dessert",
+      "FOOD": "Food"
+    },
+    "form": {
+      "newTitle": "New product",
+      "editTitle": "Edit product",
+      "name": "Product name",
+      "namePlaceholder": "e.g. Flat White",
+      "nameRequired": "Product name must be at least 2 characters",
+      "category": "Category",
+      "price": "Price (₺)",
+      "priceRequired": "Enter a valid price",
+      "stock": "Stock",
+      "stockRequired": "Enter a valid stock amount",
+      "active": "Show as active on the menu"
+    },
+    "toast": {
+      "created": "Product created",
+      "updated": "Product updated",
+      "deleted": "Product deleted"
+    }
   },
   "settings": {
     "title": "Settings",
-    "subtitle": "Cafe info and theme settings will appear here."
+    "subtitle": "Cafe details, appearance and account settings.",
+    "cafe": {
+      "title": "Cafe details",
+      "description": "Shown on receipts and reports.",
+      "name": "Cafe name",
+      "address": "Address",
+      "phone": "Phone"
+    },
+    "appearance": {
+      "title": "Appearance",
+      "description": "Theme and language preferences are stored in your browser.",
+      "theme": "Theme",
+      "light": "Light",
+      "dark": "Dark",
+      "language": "Language"
+    },
+    "account": {
+      "title": "Account",
+      "email": "Email",
+      "role": "Role",
+      "roles": {
+        "ADMIN": "Administrator",
+        "STAFF": "Staff"
+      }
+    },
+    "toast": {
+      "saved": "Settings saved"
+    }
   },
   "common": {
-    "noContent": "No content yet"
+    "loadError": "Could not load data",
+    "actionFailed": "The action failed",
+    "retry": "Try again",
+    "clearFilters": "Clear filters",
+    "previous": "Previous",
+    "next": "Next",
+    "pageInfo": "Page {{page}} / {{totalPages}} · {{total}} records",
+    "save": "Save",
+    "saving": "Saving...",
+    "cancel": "Cancel",
+    "close": "Close",
+    "delete": "Delete",
+    "edit": "Edit"
   }
 }

@@ -1,32 +1,99 @@
-# React + TypeScript + Vite
+# ☕ Brew Point
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Kurgusal bir kafe için sipariş, menü ve satış analizi yönetim paneli.
+React 19 + TypeScript ile yazılmış, Spring Boot backend'ine bağlanmaya hazır
+bir portfolyo projesi.
 
-Currently, two official plugins are available:
+Şu an tüm veri `src/lib/mock-db.ts` içindeki bellek içi sahte veritabanından
+geliyor; servis katmanının imzaları backend sözleşmesiyle birebir aynı olduğu
+için geçiş her endpoint'te tek satırlık bir değişiklik olacak.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Özellikler
 
-## React Compiler
+- **Dashboard** — 4 KPI kartı (düne göre yüzde değişimle), satış trendi (30 gün),
+  en çok satan ürünler, saatlik yoğunluk ve kategori bazlı ciro grafikleri
+- **Siparişler** — sunucu şeklinde sayfalama, durum/tarih filtresi, arama,
+  sipariş detay modalı ve durum güncelleme
+- **Menü** — ürün CRUD, kategori filtresi, düşük stok rozeti, form validasyonu
+- **Ayarlar** — kafe bilgileri, tema ve dil tercihi, hesap özeti
+- **i18n** — TR/EN, tercih `localStorage`'da saklanır; para/tarih formatları
+  `Intl` ile dile göre değişir
+- **Tema** — açık/koyu mod, semantik CSS token'ları üzerinden
+- **Responsive** — mobilde sidebar drawer, yatay kaydırılabilir tablolar
+- Route bazlı code splitting, loading skeleton'ları, toast bildirimleri
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack
 
-## Expanding the Oxlint configuration
+| Alan | Kütüphane |
+| --- | --- |
+| UI | React 19, TypeScript, Vite |
+| Stil | Tailwind CSS v4 (`@tailwindcss/vite`) |
+| Server state | TanStack Query |
+| Client state | Zustand (persist) |
+| Routing | React Router v7 |
+| Form | React Hook Form + Zod |
+| Grafik | Recharts |
+| HTTP | Axios (interceptor'lı instance) |
+| i18n | i18next + react-i18next |
+| İkon | lucide-react |
+| Lint | oxlint |
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+## Kurulum
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
+npm run dev
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+`http://localhost:5173` adresinde açılır.
+
+Demo giriş: **admin@brewpoint.com / brewpoint**
+(`admin` ile başlayan e-postalar ADMIN, diğerleri STAFF rolüyle giriş yapar.)
+
+### Ortam değişkenleri
+
+`.env.example` dosyasını `.env` olarak kopyalayın:
+
+```
+VITE_API_URL=http://localhost:8080/api
+```
+
+### Komutlar
+
+| Komut | Açıklama |
+| --- | --- |
+| `npm run dev` | Geliştirme sunucusu |
+| `npm run build` | Tip kontrolü + production build |
+| `npm run preview` | Build çıktısını önizle |
+| `npm run lint` | oxlint |
+
+## Klasör Yapısı
+
+```
+src/
+├─ components/
+│  ├─ ui/          # Button, Card, Field, Modal, Toaster... (tasarım primitifleri)
+│  ├─ layout/      # AppLayout, Sidebar, Navbar
+│  ├─ dashboard/   # KPI kartı ve Recharts grafikleri
+│  ├─ orders/      # Sipariş detay modalı
+│  └─ products/    # Ürün formu, silme onayı
+├─ pages/          # Login, Dashboard, Orders, Products, Settings
+├─ hooks/          # TanStack Query hook'ları, formatlayıcılar, tema, debounce
+├─ lib/
+│  ├─ api/         # Servis katmanı (şu an mock, backend'e hazır)
+│  ├─ mock-db.ts   # Bellek içi sahte veritabanı
+│  ├─ axios.ts     # JWT interceptor'lı axios instance
+│  └─ format.ts    # Intl tabanlı para/tarih/sayı formatları
+├─ store/          # Zustand: auth, ui (tema/drawer), toast
+├─ types/          # Domain tipleri (Order, Product, Page<T>...)
+└─ i18n/           # i18next config + tr/en çevirileri
+```
+
+## Backend'e Geçiş
+
+`src/lib/api/*.ts` içindeki her fonksiyonun başında hedef endpoint çağrısı
+yorum olarak duruyor. Backend hazır olduğunda mock gövdeyi silip yorumdaki
+satırı açmak yeterli — tipler ve `Page<T>` şekli zaten Spring Boot yanıtıyla
+uyumlu.
+
+İlerleme durumu ve yol haritası için [PROGRESS.md](PROGRESS.md).

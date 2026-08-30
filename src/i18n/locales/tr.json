@@ -3,45 +3,182 @@
     "dashboard": "Dashboard",
     "orders": "Siparişler",
     "products": "Menü",
-    "settings": "Ayarlar"
+    "settings": "Ayarlar",
+    "demoBadge": "Demo veri ile çalışıyor"
   },
   "navbar": {
     "welcome": "Hoş geldin, {{email}}",
-    "logout": "Çıkış yap"
+    "logout": "Çıkış yap",
+    "toggleTheme": "Temayı değiştir"
   },
   "login": {
+    "heading": "Giriş yap",
     "title": "Yönetim paneline giriş yap",
     "email": "E-posta",
     "emailPlaceholder": "ornek@brewpoint.com",
     "emailInvalid": "Geçerli bir e-posta girin",
     "password": "Şifre",
     "passwordTooShort": "Şifre en az 6 karakter olmalı",
-    "submit": "Giriş yap"
+    "submit": "Giriş yap",
+    "submitting": "Giriş yapılıyor...",
+    "failed": "Giriş başarısız. Bilgileri kontrol edin.",
+    "demoHint": "Demo hesap: {{email}} / {{password}}",
+    "fillDemo": "Demo bilgilerini doldur"
   },
   "dashboard": {
     "title": "Dashboard",
-    "subtitle": "Günlük satış özeti ve grafikler burada olacak.",
+    "subtitle": "Son 30 günün satış özeti ve grafikler.",
+    "vsYesterday": "düne göre",
     "kpi": {
       "todaySales": "Bugünkü Satış",
       "orderCount": "Sipariş Sayısı",
       "avgBasket": "Ort. Sepet",
       "activeProducts": "Aktif Ürün"
     },
-    "salesTrendPlaceholder": "Satış trendi grafiği (yakında)"
+    "charts": {
+      "salesTrend": "Satış Trendi",
+      "salesTrendHint": "Son 30 günün günlük cirosu",
+      "topProducts": "En Çok Satanlar",
+      "topProductsHint": "Adet bazında ilk 5 ürün",
+      "hourlyTraffic": "Saatlik Yoğunluk",
+      "hourlyTrafficHint": "Saat dilimine göre sipariş sayısı",
+      "categoryBreakdown": "Kategori Dağılımı",
+      "categoryBreakdownHint": "Kategori bazında ciro"
+    }
   },
   "orders": {
     "title": "Siparişler",
-    "subtitle": "Sipariş tablosu, filtreleme ve durum güncelleme burada olacak."
+    "subtitle": "Siparişleri filtreleyin, detayları görün ve durumu güncelleyin.",
+    "empty": "Filtrelere uyan sipariş bulunamadı",
+    "tableNumber": "Masa {{number}}",
+    "itemCount_one": "{{count}} ürün",
+    "itemCount_other": "{{count}} ürün",
+    "filters": {
+      "search": "Ara",
+      "searchPlaceholder": "Sipariş no, masa veya ürün",
+      "status": "Durum",
+      "allStatuses": "Tüm durumlar",
+      "from": "Başlangıç",
+      "to": "Bitiş"
+    },
+    "table": {
+      "orderNumber": "Sipariş No",
+      "table": "Masa",
+      "items": "Ürün",
+      "date": "Tarih",
+      "status": "Durum",
+      "total": "Tutar"
+    },
+    "status": {
+      "PENDING": "Bekliyor",
+      "PREPARING": "Hazırlanıyor",
+      "COMPLETED": "Tamamlandı",
+      "CANCELLED": "İptal"
+    },
+    "detail": {
+      "title": "Sipariş {{orderNumber}}",
+      "items": "Sipariş içeriği",
+      "total": "Toplam",
+      "updateStatus": "Durumu güncelle"
+    },
+    "toast": {
+      "statusUpdated": "Sipariş durumu güncellendi"
+    }
   },
   "products": {
     "title": "Menü",
-    "subtitle": "Ürün listesi, stok durumu ve CRUD burada olacak."
+    "subtitle": "Ürünleri yönetin, fiyat ve stok bilgisini güncelleyin.",
+    "new": "Yeni ürün",
+    "empty": "Filtrelere uyan ürün bulunamadı",
+    "lowStock": "Düşük stok",
+    "active": "Aktif",
+    "passive": "Pasif",
+    "deleteTitle": "Ürünü sil",
+    "deleteMessage": "\"{{name}}\" kalıcı olarak silinecek. Emin misiniz?",
+    "filters": {
+      "search": "Ara",
+      "searchPlaceholder": "Ürün adı",
+      "category": "Kategori",
+      "allCategories": "Tüm kategoriler"
+    },
+    "table": {
+      "name": "Ürün",
+      "category": "Kategori",
+      "price": "Fiyat",
+      "stock": "Stok",
+      "state": "Durum",
+      "actions": "İşlem"
+    },
+    "category": {
+      "COFFEE": "Kahve",
+      "COLD_DRINK": "Soğuk İçecek",
+      "TEA": "Çay",
+      "DESSERT": "Tatlı",
+      "FOOD": "Yiyecek"
+    },
+    "form": {
+      "newTitle": "Yeni ürün",
+      "editTitle": "Ürünü düzenle",
+      "name": "Ürün adı",
+      "namePlaceholder": "Örn. Flat White",
+      "nameRequired": "Ürün adı en az 2 karakter olmalı",
+      "category": "Kategori",
+      "price": "Fiyat (₺)",
+      "priceRequired": "Geçerli bir fiyat girin",
+      "stock": "Stok",
+      "stockRequired": "Geçerli bir stok adedi girin",
+      "active": "Menüde aktif olarak göster"
+    },
+    "toast": {
+      "created": "Ürün eklendi",
+      "updated": "Ürün güncellendi",
+      "deleted": "Ürün silindi"
+    }
   },
   "settings": {
     "title": "Ayarlar",
-    "subtitle": "Kafe bilgisi ve tema ayarları burada olacak."
+    "subtitle": "Kafe bilgisi, görünüm ve hesap ayarları.",
+    "cafe": {
+      "title": "Kafe bilgileri",
+      "description": "Fişlerde ve raporlarda görünen bilgiler.",
+      "name": "Kafe adı",
+      "address": "Adres",
+      "phone": "Telefon"
+    },
+    "appearance": {
+      "title": "Görünüm",
+      "description": "Tema ve dil tercihi tarayıcıda saklanır.",
+      "theme": "Tema",
+      "light": "Açık",
+      "dark": "Koyu",
+      "language": "Dil"
+    },
+    "account": {
+      "title": "Hesap",
+      "email": "E-posta",
+      "role": "Rol",
+      "roles": {
+        "ADMIN": "Yönetici",
+        "STAFF": "Personel"
+      }
+    },
+    "toast": {
+      "saved": "Ayarlar kaydedildi"
+    }
   },
   "common": {
-    "noContent": "Henüz içerik yok"
+    "loadError": "Veri yüklenemedi",
+    "actionFailed": "İşlem başarısız oldu",
+    "retry": "Tekrar dene",
+    "clearFilters": "Filtreleri temizle",
+    "previous": "Önceki",
+    "next": "Sonraki",
+    "pageInfo": "Sayfa {{page}} / {{totalPages}} · {{total}} kayıt",
+    "save": "Kaydet",
+    "saving": "Kaydediliyor...",
+    "cancel": "Vazgeç",
+    "close": "Kapat",
+    "delete": "Sil",
+    "edit": "Düzenle"
   }
 }

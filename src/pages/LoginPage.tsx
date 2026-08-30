@@ -1,15 +1,23 @@
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { Coffee } from 'lucide-react'
 import { useAuthStore } from '@/store/auth-store'
+import { login as loginRequest } from '@/lib/api/auth'
+import { Button } from '@/components/ui/Button'
+import { Field, Input } from '@/components/ui/Field'
+
+const DEMO_EMAIL = 'admin@brewpoint.com'
+const DEMO_PASSWORD = 'brewpoint'
 
 export function LoginPage() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const login = useAuthStore((s) => s.login)
   const navigate = useNavigate()
+  const [formError, setFormError] = useState<string | null>(null)
 
   const loginSchema = useMemo(
     () =>
@@ -25,61 +33,94 @@ export function LoginPage() {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm<LoginForm>({ resolver: zodResolver(loginSchema) })
 
   const onSubmit = async (data: LoginForm) => {
-    // TODO: backend hazır olunca gerçek /auth/login çağrısına bağla
-    login('mock-jwt-token', { email: data.email, role: 'ADMIN' })
-    navigate('/dashboard')
+    setFormError(null)
+    try {
+      const response = await loginRequest(data.email, data.password)
+      login(response.token, response.user)
+      navigate('/dashboard', { replace: true })
+    } catch {
+      setFormError(t('login.failed'))
+    }
   }
 
+  const fillDemo = () => {
+    setValue('email', DEMO_EMAIL)
+    setValue('password', DEMO_PASSWORD)
+  }
+
+  const toggleLanguage = () =>
+    i18n.changeLanguage(i18n.language.startsWith('tr') ? 'en' : 'tr')
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-neutral-50 px-4">
-      <div className="w-full max-w-sm bg-white border border-neutral-200 rounded-lg p-8">
-        <h1 className="text-xl font-semibold mb-1">☕ Brew Point</h1>
-        <p className="text-sm text-neutral-500 mb-6">{t('login.title')}</p>
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          <div>
-            <label className="text-sm font-medium block mb-1">
-              {t('login.email')}
-            </label>
-            <input
-              type="email"
-              {...register('email')}
-              className="w-full border border-neutral-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-neutral-900"
-              placeholder={t('login.emailPlaceholder')}
-            />
-            {errors.email && (
-              <p className="text-red-500 text-xs mt-1">
-                {errors.email.message}
-              </p>
-            )}
-          </div>
-          <div>
-            <label className="text-sm font-medium block mb-1">
-              {t('login.password')}
-            </label>
-            <input
-              type="password"
-              {...register('password')}
-              className="w-full border border-neutral-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-neutral-900"
-              placeholder="••••••••"
-            />
-            {errors.password && (
-              <p className="text-red-500 text-xs mt-1">
-                {errors.password.message}
-              </p>
-            )}
-          </div>
+    <div className="min-h-screen flex items-center justify-center bg-bg px-4 py-10">
+      <div className="w-full max-w-sm">
+        <div className="flex items-center justify-between mb-4">
+          <span className="flex items-center gap-2 font-semibold text-lg tracking-tight">
+            <Coffee size={20} className="text-brand" />
+            Brew Point
+          </span>
           <button
-            type="submit"
-            disabled={isSubmitting}
-            className="w-full bg-neutral-900 text-white text-sm font-medium py-2 rounded-md hover:bg-neutral-800 transition-colors disabled:opacity-50"
+            onClick={toggleLanguage}
+            className="text-xs font-medium text-muted hover:text-fg transition-colors uppercase"
           >
-            {t('login.submit')}
+            {i18n.language.startsWith('tr') ? 'EN' : 'TR'}
           </button>
-        </form>
+        </div>
+
+        <div className="bg-surface border border-border rounded-xl p-6">
+          <h1 className="text-base font-semibold">{t('login.heading')}</h1>
+          <p className="text-sm text-muted mt-0.5 mb-5">{t('login.title')}</p>
+
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            <Field label={t('login.email')} error={errors.email?.message}>
+              <Input
+                type="email"
+                autoComplete="email"
+                placeholder={t('login.emailPlaceholder')}
+                {...register('email')}
+              />
+            </Field>
+
+            <Field label={t('login.password')} error={errors.password?.message}>
+              <Input
+                type="password"
+                autoComplete="current-password"
+                placeholder="••••••••"
+                {...register('password')}
+              />
+            </Field>
+
+            {formError && (
+              <p className="text-sm text-red-500 bg-red-500/10 border border-red-500/20 rounded-md px-3 py-2">
+                {formError}
+              </p>
+            )}
+
+            <Button type="submit" disabled={isSubmitting} className="w-full">
+              {isSubmitting ? t('login.submitting') : t('login.submit')}
+            </Button>
+          </form>
+
+          <div className="mt-5 pt-4 border-t border-border">
+            <p className="text-xs text-muted">
+              {t('login.demoHint', {
+                email: DEMO_EMAIL,
+                password: DEMO_PASSWORD,
+              })}
+            </p>
+            <button
+              onClick={fillDemo}
+              className="text-xs font-medium text-brand hover:underline mt-1.5"
+            >
+              {t('login.fillDemo')}
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   )

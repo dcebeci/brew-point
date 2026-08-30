@@ -6,7 +6,16 @@ import './index.css'
 import './i18n/config'
 import App from './App.tsx'
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      // Panel verisi sık değişmiyor; her focus'ta yeniden çekmeye gerek yok.
+      refetchOnWindowFocus: false,
+      staleTime: 30_000,
+      retry: 1,
+    },
+  },
+})
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
