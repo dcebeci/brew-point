@@ -26,3 +26,4 @@ dist-ssr
 # Local notes / env
 PROGRESS.md
 .env
+.claude/
